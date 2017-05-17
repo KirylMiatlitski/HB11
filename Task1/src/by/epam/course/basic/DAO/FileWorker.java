@@ -32,7 +32,8 @@ public class FileWorker {
 		    if(!file.exists()){
 	            throw new FileNotFoundException() ;
 	        }
-		    try {
+		    try {// избыточно используешь кнструкции Try
+			    // не надо их в одной области видимости вкладывать друг в друга
 		       
 		        BufferedReader in = new BufferedReader(new FileReader(this.file.getAbsoluteFile()));
 		        try {
@@ -45,7 +46,8 @@ public class FileWorker {
 		            in.close();
 		        }
 		    } catch(IOException e) {
-		        throw new RuntimeException(e);
+		        throw new RuntimeException(e);// и чистые RuntimeException лучше не бросать
+			    // лучше бросать свои исключения
 		    }
 		    return sb.toString();
 		}
